@@ -1,10 +1,11 @@
 {
   "name": "nychealth",
   "version": "0.1.0",
-  "description": "",
+  "description": "API and other apps for health inspection data",
   "main": "main.js",
   "dependencies": {
-    "express": "^4.12.4"
+    "express": "^4.12.4",
+    "request": "^2.8.4"
   },
   "devDependencies": {},
   "scripts": {
