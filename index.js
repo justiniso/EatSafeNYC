@@ -55,8 +55,7 @@ app.get('/query', function (req, res) {
     return;
 });
 var port = process.env.PORT || constants.APP_PORT;
-var address = constants.APP_ADDRESS;
 
-var server = app.listen(port, address, function () {
+var server = app.listen(port, function () {
     console.log(util.format('Server successfully started; listening on %s:%d', address, port));
 });
