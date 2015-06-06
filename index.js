@@ -12,20 +12,15 @@ var logError = function (error) {
     console.error(error, error.stack.split("\n"));
 };
 
-app.get('/up', function (req, res) {
-    res.send('I am up!');
-});
-
-/* 
- * Query endpoint; note that because you will not get a response until
- * we hear back from Socrata, the response time can be a while. 
+/*
+ * Perform the query. You must provide a options array with options.query specified, as
+ * well as a callback function that accepts the response string.
  */
-app.get('/query', function (req, res) {
+var query = function (options, cb) {
     var sodaclient = new SodaClient('resource/xx67-kt59.json');
-    var queryTerm = req.query.q;
+    var queryTerm = options.query;
     if (!queryTerm) {
-        res.send('Invalid query');
-        return;
+        cb('Invalid query');
     }
     sodaclient.get({ params: {'$q': queryTerm}, 
         success: function (body) {
@@ -35,25 +30,51 @@ app.get('/query', function (req, res) {
                 var lastGraded = inspections.lastGradedInspection() || 'This restaurant has not been graded yet';
 
                 if (lastGraded === null) {
-                    res.send(util.format('No restaurants found for: "%s"', queryTerm));
+                    cb(util.format('No restaurants found for: "%s"', queryTerm));
                 }
-                res.send(lastGraded.toString());
+                cb(lastGraded.toString());
             } catch (e) {
                 // TODO: better error handling
                 logError(e);
-                res.send(e);
+                cb(e.toString());
             }
             return;
         }, 
         error: function (error) {
             logError(error);
             // TODO: log error when logging is in place
-            res.send(error.toString());
-            return;
+            cb(error.toString());
         }
     });
     return;
+};
+
+app.get('/up', function (req, res) {
+    res.send('I am up!');
 });
+
+/* 
+ * Query endpoint; note that because you will not get a response until
+ * we hear back from Socrata, the response time can be a while. 
+ */
+app.get('/query', function (req, res) {
+    query({'query': req.query.q}, function (response) {
+        res.send(response);
+    });
+});
+
+// TODO: app should have several receivers instead of hosting each endpoint here (sms, slack, etc.)
+app.get('/twilio', function (req, res) {
+
+    // TODO: For now, take the raw body; we can sanitize and parse later
+    var body = req.query.Body;
+
+    query({'query': body}, function (response) {
+        res.send(response);
+    });
+});
+
+
 var port = process.env.PORT || constants.APP_PORT;
 
 var server = app.listen(port, function () {
