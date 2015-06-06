@@ -70,7 +70,10 @@ app.get('/twilio', function (req, res) {
     var body = req.query.Body;
 
     query({'query': body}, function (response) {
-        res.send(response);
+        res.send(util.format('<?xml version="1.0" encoding="UTF-8"?> \
+                                <Response> \
+                                    <Message>%s</Message> \
+                                </Response>', response));
     });
 });
 
