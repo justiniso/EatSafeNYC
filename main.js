@@ -1,7 +1,11 @@
 var express = require('express');
-var app = express();
+var util = require('util');
+
+var constants = require('./constants.js');
 var SodaClient = require('./sodaclient.js');
 var InspectionCollection = require('./models.js').InspectionCollection;
+
+var app = express();
 
 // TODO: move this to another module
 var logError = function (error) {
@@ -30,6 +34,9 @@ app.get('/query', function (req, res) {
                 var inspections = new InspectionCollection(json);
                 var lastGraded = inspections.lastGradedInspection() || 'This restaurant has not been graded yet';
 
+                if (lastGraded === null) {
+                    res.send(util.format('No restaurants found for: "%s"', queryTerm));
+                }
                 res.send(lastGraded.toString());
             } catch (e) {
                 // TODO: better error handling
@@ -48,4 +55,4 @@ app.get('/query', function (req, res) {
     return;
 });
 
-var server = app.listen(3000, function () {});
+var server = app.listen(constants.APP_PORT, constants.APP_ADDRESS);
