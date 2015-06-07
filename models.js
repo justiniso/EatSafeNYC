@@ -92,12 +92,12 @@ Inspection.prototype.id = function () {
 };
 
 Inspection.prototype.toString = function () {
-    var sep = '\n    -';
+    var sep = '\n\n';
 
     var violationDescriptions = this.violations.map(function (violation) { 
         var description = codeShortMessages[violation.code] || violation.description;
 
-        return util.format('[%s] %s', violation.critical, description); 
+        return util.format('%s (%s)', description, violation.critical); 
     })
 
     return util.format('%s (inspected %s)\n\tGRADE: %s, SCORE: %s %s\n', 
