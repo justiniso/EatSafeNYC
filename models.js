@@ -2,6 +2,8 @@ var hash = require('sha1');
 var util = require('util');
 var _ = require('underscore');
 
+var fs = require('fs');
+var codeShortMessages = JSON.parse(fs.readFileSync('inspections/codes.json', 'utf8'));
 
 var InspectionCollection = function(data) {
     this.inspections = [];
@@ -93,7 +95,9 @@ Inspection.prototype.toString = function () {
     var sep = '\n    -';
 
     var violationDescriptions = this.violations.map(function (violation) { 
-        return util.format('[%s] %s', violation.critical, violation.description); 
+        var description = codeShortMessages[violation.code] || violation.description;
+
+        return util.format('[%s] %s', violation.critical, description); 
     })
 
     return util.format('%s (inspected %s)\n\tGRADE: %s, SCORE: %s %s\n', 

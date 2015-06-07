@@ -1,0 +1,20 @@
+{
+    "02B": "🍲 Hot food not kept at safe temp",
+    "02G": "🐟 Cold food not kept at safe temp",
+    "04H": "👐 Food cross-contaminated",
+    "04K": "🐀 Live rats",
+    "04L": "🐭 Live mice",
+    "04M": "🐛 Live roaches",
+    "04N": "🐝 Filth flies",
+    "06B": "🚬 Tobacco use",
+    "06C": "😷 Food not protected from contamination",
+    "06D": "🔪 Food surface not washed",
+    "06E": "🍴 Sanitized equipment improperly stored",
+    "08A": "🐀 Facility not vermin proof",
+    "08C": "🐞 Improper pesticide use",
+    "10A": "🚽 Toilet facility not maintained",
+    "10B": "🚽 Plumbing improperly installed",
+    "10F": "🔧 Non-food surface poorly constructed",
+    "10H": "🍴 Unsanitary utensil washing operation",
+    "10I": "🍴 Single-use utensil reused"
+}
