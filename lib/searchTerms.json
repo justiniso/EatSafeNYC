@@ -1,0 +1,15 @@
+[
+    ["st marks", "saint marks place"],
+    ["saintmarks", "saint marks place"],
+    ["saint marks", "saint marks place"],
+    ["lex", "lexington"],
+    ["ave", "avenue"],
+    ["blvd", "boulevard"],
+    ["pl", "place"],
+    ["st", "street"],
+    ["e", "east"],
+    ["n", "north"],
+    ["w", "west"],
+    ["s", "south"],
+    ["&", ""]
+]
