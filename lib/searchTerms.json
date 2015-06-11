@@ -1,7 +1,7 @@
 [
-    ["st marks", "saint marks place"],
-    ["saintmarks", "saint marks place"],
-    ["saint marks", "saint marks place"],
+    ["st marks", "st marks"],
+    ["saintmarks", "st marks"],
+    ["saint marks", "st marks"],
     ["lex", "lexington"],
     ["ave", "avenue"],
     ["blvd", "boulevard"],
