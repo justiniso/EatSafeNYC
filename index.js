@@ -1,13 +1,8 @@
 var express = require('express');
 var util = require('util');
+var app = require('./frontendApp.js').app;
 
 var constants = require('./constants.js');
-
-var app = express();
-
-app.get('/up', function (req, res) {
-    res.send('I am up!');
-});
 
 // Include the other apps
 app.use('/api', require('./apiApp.js').app);
