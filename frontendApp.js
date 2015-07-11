@@ -21,7 +21,7 @@ app.get('/up', function (req, res) {
 
 app.get('/', function (req, res) {
     res.render('master', {
-        title: 'TODO: name this app',
+        title: 'Eat Safe NYC - Restaurant health ratings and violations',
         partials: {
             body: 'home'
         }
