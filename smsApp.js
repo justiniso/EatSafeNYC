@@ -26,10 +26,27 @@ app.get('/up', function (req, res) {
  */
 app.get('/respond', function (req, res) {
     var body = req.query.Body;
+    var response = '';
 
     // TODO: sanitize the body before querying
 
-    query({'query': body}, function (response) {
+    query({'query': body}, function (result) {
+        var restaurants = result.results;
+
+        if (result.error) {
+            res.status(500).send('Something broke back here. Maybe try another search.');
+        } else if (restaurants.restaurants.length == 0) {
+            response = '0 restaurants found. Try a simpler search like "Sakura" instead of "Sakura Sushi"'; 
+        } else {
+            var lastGraded = restaurants.restaurants[0].lastGradedInspection();
+
+            if (lastGraded) {
+                response = lastGraded.toString();
+            } else {
+                response = 'This restaurant has not yet been graded. Visit the website for more info.';
+            }
+
+        }
         res.send(wrapResponse(response));
     });
 });
