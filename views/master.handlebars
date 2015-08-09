@@ -43,6 +43,11 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/static/js/creative.js"></script>
+
+    <!-- React and logic -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="/static/js/models.js"></script>
+    <script src="/static/js/searchComponent.js"></script>
     {{>head}}
 </head>
 <body id="page-top">
@@ -77,13 +82,10 @@
             <div class="header-content-inner">
                 <h1>Eat Safe NYC</h1>
                 <hr>
-                <h2>Search thousands of New York restaurants for grades and health code violations</h2>
                 <p>
-                    <form>
-                        <input type="text" placeholder="e.g. Morris Bake Shop"/>
-                        <button href="#about" class="btn btn-primary btn-xl page-scroll" type="submit">Search</button>
-                    </form>
+                    <div data-render-search="1">Unfortunately search is offline right now. It should be available later. Sorry about that!</div>
                 </p>
+                <h2>Search thousands of New York restaurants for grades and health code violations</h2>
                 <p>Food poisoning is no joke! Search the name of a restaurant to see all of its health code violations. Cockroaches? Undercooked chicken? Don't find out the hard way.</p>
             </div>
         </div>
@@ -115,5 +117,8 @@
             
         </div>
     </section>
+
+    <!-- Preload the spinner -->
+    <img src="/static/img/spinner.svg" alt="Loading..." style="display: none">
 </body>
 </html>

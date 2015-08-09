@@ -8,6 +8,27 @@ header:before {
     -webkit-transition: all 1s;
 }
 
-input {
+
+/** SEARCH **/
+
+.main-search .searchbox-container {
     color: #333;
+    width: 100%;
+}
+
+.main-search input[type="text"] {
+    min-height: 3em;
+    padding: 1em;
+    width: 100%;
+}
+
+.main-search .button-container {
+    display: inline-block;
+    margin-left: -80px;
+}
+
+.main-search .search-submit {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
 }
