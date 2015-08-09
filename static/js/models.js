@@ -125,7 +125,7 @@ var Search = React.createClass({
             React.createElement("div", null, 
                 React.createElement("form", {onSubmit: this.handleSubmit, className: "main-search"}, 
                     React.createElement("div", {className: "searchbox-container"}, 
-                        React.createElement("input", {type: "text", onChange: this.onChange, value: this.props.query, autoFocus: true}), 
+                        React.createElement("input", {type: "text", onChange: this.onChange, value: this.props.query, autoFocus: true, placeholder: "e.g. 'abc kitchen' or grand sichuan 7th avenue'"}), 
                         React.createElement("div", {className: "button-container"}, 
                             button
                         )
