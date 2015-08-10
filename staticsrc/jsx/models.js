@@ -3,16 +3,19 @@ var Restaurant = React.createClass({
     displayName: 'Restaurant',
     render: function () {
         return (
-            <div className="item">
-                <h3>{this.props.name} - {this.props.lastGrade || 'Currently ungraded'}</h3>
+            <li className="item restaurant">
+                <h3>{this.props.name}</h3>
                 <h4>{this.props.address}</h4>
-                <ul className="inspections">
+                <ul>
                     {this.props.inspections.map(function (insp, i) {
                         var violations = insp.violations;
                         return ( 
-                            <li className="inspection">
-                                <p>Inspected {insp.dateHuman}</p>
-                                <ul className="violations">
+                            <li className="item-sub inspection">
+                                <div className="summary">
+                                    <div className="section grade">{insp.grade || 'N/A'}</div>
+                                    <div className="section">Inspected {insp.dateHuman}</div>
+                                </div>
+                                <ul className="item-sub-contents violations">
                                     {violations.map(function (v, i) {
                                         return <li>{v.descriptionHuman}</li>   
                                     })}
@@ -21,7 +24,7 @@ var Restaurant = React.createClass({
                         )
                     })}
                 </ul>
-            </div>
+            </li>
         )
     }
 });
@@ -31,7 +34,7 @@ var List = React.createClass({
     displayName: 'List',
     render: function () {
         return (
-            <ul className="results">
+            <ul>
                 {this.props.items.map(function (item, i) {
                     return (
                         <Restaurant name={item.name} address={item.address} 
@@ -132,7 +135,7 @@ var Search = React.createClass({
                     </div>
                 </form>
                 <div className="error">{this.state.error}</div>
-                <div className="results">
+                <div className="search-results">
                     <List items={this.state.items} />
                 </div>
             </div>

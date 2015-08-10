@@ -3,16 +3,19 @@ var Restaurant = React.createClass({
     displayName: 'Restaurant',
     render: function () {
         return (
-            React.createElement("div", {className: "item"}, 
-                React.createElement("h3", null, this.props.name, " - ", this.props.lastGrade || 'Currently ungraded'), 
+            React.createElement("li", {className: "item restaurant"}, 
+                React.createElement("h3", null, this.props.name), 
                 React.createElement("h4", null, this.props.address), 
-                React.createElement("ul", {className: "inspections"}, 
+                React.createElement("ul", null, 
                     this.props.inspections.map(function (insp, i) {
                         var violations = insp.violations;
                         return ( 
-                            React.createElement("li", {className: "inspection"}, 
-                                React.createElement("p", null, "Inspected ", insp.dateHuman), 
-                                React.createElement("ul", {className: "violations"}, 
+                            React.createElement("li", {className: "item-sub inspection"}, 
+                                React.createElement("div", {className: "summary"}, 
+                                    React.createElement("div", {className: "section grade"}, insp.grade || 'N/A'), 
+                                    React.createElement("div", {className: "section"}, "Inspected ", insp.dateHuman)
+                                ), 
+                                React.createElement("ul", {className: "item-sub-contents violations"}, 
                                     violations.map(function (v, i) {
                                         return React.createElement("li", null, v.descriptionHuman)   
                                     })
@@ -31,7 +34,7 @@ var List = React.createClass({
     displayName: 'List',
     render: function () {
         return (
-            React.createElement("ul", {className: "results"}, 
+            React.createElement("ul", null, 
                 this.props.items.map(function (item, i) {
                     return (
                         React.createElement(Restaurant, {name: item.name, address: item.address, 
@@ -132,7 +135,7 @@ var Search = React.createClass({
                     )
                 ), 
                 React.createElement("div", {className: "error"}, this.state.error), 
-                React.createElement("div", {className: "results"}, 
+                React.createElement("div", {className: "search-results"}, 
                     React.createElement(List, {items: this.state.items})
                 )
             )

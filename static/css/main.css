@@ -13,7 +13,6 @@ header:before {
 
 .main-search .searchbox-container {
     color: #333;
-    width: 100%;
 }
 
 .main-search input[type="text"] {
@@ -24,11 +23,53 @@ header:before {
 
 .main-search .button-container {
     display: inline-block;
-    margin-left: -80px;
+    margin-left: -35px;
 }
 
 .main-search .search-submit {
     width: 30px;
     height: 30px;
     vertical-align: middle;
+}
+
+/** SEARCH RESULTS **/
+
+.search-results {
+    width: 100%;
+    background: #ccc;
+}
+
+.search-results li {
+    list-style: none;
+    text-align: left;
+}
+
+.item {
+
+}
+
+.item-sub {
+
+}
+    .item-sub .summary {
+        width: 100%;
+        outline: 1px solid gray;
+    }
+
+        .item-sub .section {
+            display: inline-block;
+            padding: 10px;
+        }
+
+        .section.grade {
+            font-family: 'Open Sans','Helvetica Neue', sans-serif; 
+            font-size: 1.5em; 
+            font-weight: bold;
+            outline: 1px solid gray;
+            width: 3em;
+            text-align: center;
+        }
+
+.item-sub-contents li {
+    list-style: disc inside;
 }
