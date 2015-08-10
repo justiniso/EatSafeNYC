@@ -1,30 +1,47 @@
 
-var Restaurant = React.createClass({
-    displayName: 'Restaurant',
+var Inspection = React.createClass({
+    displayName: 'Inspection',
     render: function () {
         return (
-            <li className="item restaurant">
+            <div className="media">
+                <div className="media-left inspection">
+                    <div className="media-object grade">{this.props.grade || 'N/A'}</div>
+                </div>
+                <div className="media-body">
+                    <h4 className="media-heading">Inspected {this.props.dateHuman}</h4>
+                    <ul className="item-sub-contents violations">
+                        {this.props.violations.map(function (v, i) {
+                            return <li>{v.descriptionHuman}</li>;
+                        })}
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+});
+
+
+var Restaurant = React.createClass({
+    displayName: 'Restaurant',
+    getInitialState: function () {
+        return {collapsed: this.props.collapsed};
+    },
+    onClick: function (e) {
+        this.setState({collapsed: !this.state.collapsed});
+    },
+    render: function () {
+        var inspectionsClass = this.state.collapsed ? 'inspections collapsed' : 'inspections';
+        return (
+            <a className="item restaurant list-group-item" onClick={this.onClick}>
                 <h3>{this.props.name}</h3>
                 <h4>{this.props.address}</h4>
-                <ul>
+                <div className={inspectionsClass}>
                     {this.props.inspections.map(function (insp, i) {
-                        var violations = insp.violations;
-                        return ( 
-                            <li className="item-sub inspection">
-                                <div className="summary">
-                                    <div className="section grade">{insp.grade || 'N/A'}</div>
-                                    <div className="section">Inspected {insp.dateHuman}</div>
-                                </div>
-                                <ul className="item-sub-contents violations">
-                                    {violations.map(function (v, i) {
-                                        return <li>{v.descriptionHuman}</li>   
-                                    })}
-                                </ul>
-                            </li>
-                        )
+                        return <Inspection violations={insp.violations} grade={insp.grade}
+                            dateHuman={insp.dateHuman} />;
                     })}
-                </ul>
-            </li>
+                </div>
+            </a>
         )
     }
 });
@@ -33,17 +50,22 @@ var Restaurant = React.createClass({
 var List = React.createClass({
     displayName: 'List',
     render: function () {
+        var collapsed = this.props.items.length > 1;
+        if (this.props.items.length === 0) {
+            return (<span></span>);
+        }
         return (
-            <ul>
+            <div className="list-group">
                 {this.props.items.map(function (item, i) {
                     return (
                         <Restaurant name={item.name} address={item.address} 
                             lastGrade={item.lastGrade} critical={item.critical} 
                             description={item.description} 
-                            inspections={item.inspections || []} />
+                            inspections={item.inspections || []}
+                            collapsed={collapsed} />
                     )
                 })}
-            </ul>
+            </div>
         );
     }
 
@@ -118,7 +140,7 @@ var Search = React.createClass({
 
         var button;
         if (this.state.loading) {
-            button = <img src="/static/img/spinner.svg" alt="Loading..." />;
+            button = <img className="search-submit" src="/static/img/spinner.svg" alt="Loading..." />;
         } else {
             button = <input type="image" className="search-submit" src="/static/img/search.svg" alt="Search" />;
 

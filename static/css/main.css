@@ -23,7 +23,8 @@ header:before {
 
 .main-search .button-container {
     display: inline-block;
-    margin-left: -35px;
+    /* Must match width of input button */
+    margin-left: -30px;
 }
 
 .main-search .search-submit {
@@ -36,7 +37,6 @@ header:before {
 
 .search-results {
     width: 100%;
-    background: #ccc;
 }
 
 .search-results li {
@@ -53,23 +53,29 @@ header:before {
 }
     .item-sub .summary {
         width: 100%;
-        outline: 1px solid gray;
     }
 
-        .item-sub .section {
-            display: inline-block;
-            padding: 10px;
+        .restaurant {
+            cursor: pointer;
         }
 
-        .section.grade {
+        .inspections.collapsed {
+            height: 0;
+            overflow: hidden;
+        }
+
+        .grade.media-object {
             font-family: 'Open Sans','Helvetica Neue', sans-serif; 
             font-size: 1.5em; 
             font-weight: bold;
-            outline: 1px solid gray;
             width: 3em;
             text-align: center;
         }
 
+        .media-heading {
+            text-align: left;
+        }
+
 .item-sub-contents li {
-    list-style: disc inside;
+    list-style: none;
 }

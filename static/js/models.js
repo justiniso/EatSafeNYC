@@ -1,27 +1,44 @@
 
-var Restaurant = React.createClass({
-    displayName: 'Restaurant',
+var Inspection = React.createClass({
+    displayName: 'Inspection',
     render: function () {
         return (
-            React.createElement("li", {className: "item restaurant"}, 
+            React.createElement("div", {className: "media"}, 
+                React.createElement("div", {className: "media-left inspection"}, 
+                    React.createElement("div", {className: "media-object grade"}, this.props.grade || 'N/A')
+                ), 
+                React.createElement("div", {className: "media-body"}, 
+                    React.createElement("h4", {className: "media-heading"}, "Inspected ", this.props.dateHuman), 
+                    React.createElement("ul", {className: "item-sub-contents violations"}, 
+                        this.props.violations.map(function (v, i) {
+                            return React.createElement("li", null, v.descriptionHuman);
+                        })
+                    )
+                )
+            )
+        );
+    }
+});
+
+
+var Restaurant = React.createClass({
+    displayName: 'Restaurant',
+    getInitialState: function () {
+        return {collapsed: this.props.collapsed};
+    },
+    onClick: function (e) {
+        this.setState({collapsed: !this.state.collapsed});
+    },
+    render: function () {
+        var inspectionsClass = this.state.collapsed ? 'inspections collapsed' : 'inspections';
+        return (
+            React.createElement("a", {className: "item restaurant list-group-item", onClick: this.onClick}, 
                 React.createElement("h3", null, this.props.name), 
                 React.createElement("h4", null, this.props.address), 
-                React.createElement("ul", null, 
+                React.createElement("div", {className: inspectionsClass}, 
                     this.props.inspections.map(function (insp, i) {
-                        var violations = insp.violations;
-                        return ( 
-                            React.createElement("li", {className: "item-sub inspection"}, 
-                                React.createElement("div", {className: "summary"}, 
-                                    React.createElement("div", {className: "section grade"}, insp.grade || 'N/A'), 
-                                    React.createElement("div", {className: "section"}, "Inspected ", insp.dateHuman)
-                                ), 
-                                React.createElement("ul", {className: "item-sub-contents violations"}, 
-                                    violations.map(function (v, i) {
-                                        return React.createElement("li", null, v.descriptionHuman)   
-                                    })
-                                )
-                            )
-                        )
+                        return React.createElement(Inspection, {violations: insp.violations, grade: insp.grade, 
+                            dateHuman: insp.dateHuman});
                     })
                 )
             )
@@ -33,14 +50,19 @@ var Restaurant = React.createClass({
 var List = React.createClass({
     displayName: 'List',
     render: function () {
+        var collapsed = this.props.items.length > 1;
+        if (this.props.items.length === 0) {
+            return (React.createElement("span", null));
+        }
         return (
-            React.createElement("ul", null, 
+            React.createElement("div", {className: "list-group"}, 
                 this.props.items.map(function (item, i) {
                     return (
                         React.createElement(Restaurant, {name: item.name, address: item.address, 
                             lastGrade: item.lastGrade, critical: item.critical, 
                             description: item.description, 
-                            inspections: item.inspections || []})
+                            inspections: item.inspections || [], 
+                            collapsed: collapsed})
                     )
                 })
             )
@@ -118,7 +140,7 @@ var Search = React.createClass({
 
         var button;
         if (this.state.loading) {
-            button = React.createElement("img", {src: "/static/img/spinner.svg", alt: "Loading..."});
+            button = React.createElement("img", {className: "search-submit", src: "/static/img/spinner.svg", alt: "Loading..."});
         } else {
             button = React.createElement("input", {type: "image", className: "search-submit", src: "/static/img/search.svg", alt: "Search"});
 
