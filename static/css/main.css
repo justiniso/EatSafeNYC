@@ -57,12 +57,23 @@ header:before {
 
         .restaurant {
             cursor: pointer;
+            box-shadow: 0 4px 2px -2px gray;
+        }
+
+        .inspections {
+            transition: height 1s;
+            -webkit-transition: height 1s;
         }
 
         .inspections.collapsed {
             height: 0;
             overflow: hidden;
         }
+
+            ul.violations {
+                margin-left: 0;
+                padding-left: 0;
+            }
 
         .grade.media-object {
             font-family: 'Open Sans','Helvetica Neue', sans-serif; 
