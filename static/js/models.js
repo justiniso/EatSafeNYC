@@ -4,6 +4,7 @@ var Inspection = React.createClass({
     render: function () {
         return (
             React.createElement("div", {className: "media"}, 
+                React.createElement("hr", null), 
                 React.createElement("div", {className: "media-left inspection"}, 
                     React.createElement("div", {className: "media-object grade"}, this.props.grade || 'N/A')
                 ), 
