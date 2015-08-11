@@ -24,8 +24,9 @@ header:before {
 
 .main-search .button-container {
     display: inline-block;
-    /* Must match width of input button */
-    margin-left: -30px;
+    /* Must match width of input button + padding */
+    margin-left: -45px;
+    padding-right: 15px;
 }
 
 .main-search .search-submit {
