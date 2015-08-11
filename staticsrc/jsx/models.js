@@ -6,7 +6,7 @@ var Inspection = React.createClass({
             <div className="media">
                 <hr />
                 <div className="media-left inspection">
-                    <div className="media-object grade">{this.props.grade || 'N/A'}</div>
+                    <div className="media-object grade">{this.props.grade || ''}</div>
                 </div>
                 <div className="media-body">
                     <h4 className="media-heading">Inspected {this.props.dateHuman}</h4>
