@@ -1,6 +1,6 @@
 # Eat Safe NYC
 
-[Live Site: eatsafenyc.com](http://www.eatsafenyc.com/)
+[eatsafenyc.com](http://www.eatsafenyc.com/)
 
 Eat Safe NYC is a project for finding NYC restaurant health code violations--with emoji 😎
 
