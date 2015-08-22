@@ -6,7 +6,7 @@ Significant portions should be divided into apps--for instance: Frontend, API, a
 
 ## UX
 
-Interfaces should be kept simple. A good rule of thumb is that the number of discrete, identifiable features can be counted on one hand. Heavy users of the app should have virtually no advantage in usability than a brand new user. 
+Interfaces should be kept simple. A good rule of thumb is that the number of discrete, identifiable features per screen can be counted on one hand. Heavy users of the app should have virtually no advantage in usability than a brand new user. 
 
 
 # Brand
