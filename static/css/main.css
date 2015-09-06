@@ -92,3 +92,26 @@ header:before {
 .item-sub-contents li {
     list-style: none;
 }
+
+/** ADS **/
+
+.promo-box {
+    max-width: 300px;
+    border: 1px solid #D8D8D8;
+    padding: 17px;
+    border-radius: 5px;
+}
+
+.promo-box .description {
+    font-size: 12px;
+}
+
+.promo-box .title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.promo-box img {
+    display: table-caption;
+    margin: 0 auto;
+}
