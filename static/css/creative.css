@@ -193,18 +193,18 @@ header .header-content {
     text-align: center;
 }
 
-header .header-content .header-content-inner h1 {
+header .header-content-inner h1 {
     margin-top: 0;
     margin-bottom: 0;
     text-transform: uppercase;
     font-weight: 700;
 }
 
-header .header-content .header-content-inner hr {
+header .header-content-inner hr {
     margin: 30px auto;
 }
 
-header .header-content .header-content-inner p {
+header .header-content-inner p {
     margin-bottom: 50px;
     font-size: 16px;
     font-weight: 300;
@@ -224,13 +224,13 @@ header .header-content .header-content-inner p {
         transform: translateY(-50%);*/
     }
 
-    header .header-content .header-content-inner {
+    header .header-content-inner {
         margin-right: auto;
         margin-left: auto;
         max-width: 1000px;
     }
 
-    header .header-content .header-content-inner p {
+    header .header-content-inner p {
         margin-right: auto;
         margin-left: auto;
         max-width: 80%;

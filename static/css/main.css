@@ -100,18 +100,20 @@ header:before {
     border: 1px solid #D8D8D8;
     padding: 17px;
     border-radius: 5px;
+    background-color: #FFFFFF;
 }
 
-.promo-box .description {
+.promo-box > .description {
     font-size: 12px;
+    font-color: #333;
 }
 
-.promo-box .title {
+.promo-box > .title {
     font-size: 18px;
     font-weight: bold;
 }
 
-.promo-box img {
+.promo-box > img {
     display: table-caption;
     margin: 0 auto;
 }
