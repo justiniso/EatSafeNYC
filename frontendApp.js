@@ -12,6 +12,16 @@ app.set('views', __dirname + '/views');
 
 app.use('/static', express.static('static'));
 
+// http://stackoverflow.com/questions/15119760/what-is-the-smartest-way-to-handle-robots-txt-in-express
+app.use(function (req, res, next) {
+    if ('/robots.txt' == req.url) {
+        res.type('text/plain')
+        res.send("User-agent: *\nDisallow: ");
+    } else {
+        next();
+    }
+});
+
 /*
  * Debug endpoint
  */
